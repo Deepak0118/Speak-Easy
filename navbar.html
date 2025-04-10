@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speak Easy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background-image: url(/background4.png);
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 15, 30, 0.6);
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      color: white;
+      font-weight: 600;
+      gap: 10px;
+    }
+
+    .navbar .logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #00e0ff;
+      background-color: #ffffff10;
+      padding: 3px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 18px;
+    }
+
+    .navbar ul li a {
+      position: relative;
+      text-decoration: none;
+      color: #e0e0ff;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    
+</style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">
+      <img src="" alt="Logo" />
+      <span>Speak Easy</span>
+    </div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#stats">Stats</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Login/Sign Up</a></li>
+    </ul>
+  </nav>
