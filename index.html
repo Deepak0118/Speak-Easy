@@ -90,7 +90,101 @@
       transform: scaleX(1);
       transform-origin: left;
     }
+    .home-section {
+      text-align: center;
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      gap: 1.2rem;
+      background-image: url(/background4.png);
+      background-position: center;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
 
+    .floating-words {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .word {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.2);
+      font-size: clamp(1rem, 1.1vw, 1.5rem);
+      font-weight: 500;
+      white-space: nowrap;
+      animation: floatAnim 10s infinite ease-in-out;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes floatAnim {
+      0%   { transform: translateY(0px) translateX(0px); }
+      25%  { transform: translateY(-10px) translateX(5px); }
+      50%  { transform: translateY(-20px) translateX(-5px); }
+      75%  { transform: translateY(-10px) translateX(10px); }
+      100% { transform: translateY(0px) translateX(0px); }
+    }
+
+    .title-container {
+      margin-top: 65px;
+      line-height: 1;
+      z-index: 1;
+    }
+
+    .title {
+      font-size: 5.5rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #00fff0, #00b2ff, #d17bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      margin: 0;
+      line-height: 1;
+      min-height: 6rem;
+    }
+
+    .subtitle-glow {
+      font-size: 1.4rem;
+      color: #e5e7fb;
+      text-shadow: 0 0 30px #5af0ff;
+      margin: 0;
+      line-height: 1.1;
+      z-index: 1;
+    }
+
+    button {
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      background: linear-gradient(90deg, #00fff0, #00b2ff, #d17bff);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 3;
+      position: relative;
+      box-shadow: 0 4px 14px rgba(0, 255, 255, 0.2);
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: linear-gradient(270deg, #00b2ff, #d17bff, #00fff0);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(0, 255, 255, 0.4);
+    }
     
 </style>
 </head>
@@ -109,3 +203,72 @@
       <li><a href="#">Login/Sign Up</a></li>
     </ul>
   </nav>
+  <section class="home-section" id="home">
+    <div class="floating-words" id="floatingWords"></div>
+    <div class="title-container">
+      <div class="title" id="animated-text"></div>
+    </div>
+    <p class="subtitle-glow">India's largest language learning platform</p>
+    <button onclick="window.location.href='https://forms.gle/cCNmcCsiqQ8L1EzQA'">Join Now</button>
+  </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+  <script>
+    const textElement = document.getElementById("animated-text");
+    const floatingWords = document.getElementById("floatingWords");
+    const texts = ["Speak Easy"];
+    let charIndex = 0;
+
+    const floatingTextSet = [
+      "Facile à parler", "Lingua facile", "geheime kroeg", "Parler facilement",
+      "Lingua fácil de usar", "Fácil de hablar", "Sprechen einfach", "locale clandestino",
+      "Скороговорка", "bar clandestino", "Flüsterkneipe", "подпольный бар", "Fala fácil"
+    ];
+
+    function populateFloatingWords() {
+      const ROWS = 10, COLS = 10;
+      const safeZone = { rowMin: 4, rowMax: 6, colMin: 3, colMax: 7 };
+      Math.seedrandom("speakeasy-fixed");
+      floatingWords.innerHTML = "";
+      let wordIndex = 0;
+
+      for (let row = 0; row < ROWS; row++) {
+        for (let col = 0; col < COLS; col++) {
+          if (
+            row >= safeZone.rowMin && row <= safeZone.rowMax &&
+            col >= safeZone.colMin && col <= safeZone.colMax
+          ) continue;
+
+          if (Math.random() > 0.6) continue;
+
+          const word = document.createElement("div");
+          word.className = "word";
+          word.innerText = floatingTextSet[wordIndex % floatingTextSet.length];
+          const top = row * 10 + Math.random() * 5;
+          const left = col * 10 + Math.random() * 5;
+
+          word.style.top = `${top}%`;
+          word.style.left = `${left}%`;
+          word.style.animationDelay = `${(wordIndex % 7) * 0.7}s`;
+
+          floatingWords.appendChild(word);
+          wordIndex++;
+        }
+      }
+    }
+
+    function typeEffect() {
+      const currentText = texts[0];
+      if (charIndex < currentText.length) {
+        textElement.innerText = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(typeEffect, 150);
+      }
+    }
+  window.onload = () => {
+    populateFloatingWords();
+    typeEffect();
+    
+  };
+</script>
+</body>
+</html>
