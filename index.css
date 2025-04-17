@@ -252,3 +252,7 @@ html, body {
 .orange { color: #ff944d; }
 .red { color: #ff4d4d; }
 .yellow { color: #ffcc00; }
+
+.stats-section :hover{
+  box-shadow: linear-gradient(90deg, #00fff0, #00b2ff, #d17bff);
+}
