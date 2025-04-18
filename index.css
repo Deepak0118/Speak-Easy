@@ -3,7 +3,7 @@ html, body {
     padding: 0;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-    background-image: url(/Speak-Easy/images1/speak\ easy\ backgrounf.jpg);
+    background-image: url(/Homebg.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -92,7 +92,7 @@ html, body {
     justify-content: center;
     height: 100vh;
     gap: 1.2rem;
-    background-image: url(/background4.png);
+    background-image:url(/Homebg.jpg);
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -198,7 +198,7 @@ html, body {
     color: #ccc;
 }
 .stats-section {
-  background-image: url(/Speak-Easy/images1/background5.png);
+  background-image: url(/background5.png);
   padding: 60px 20px;
   text-align: center;
   background-position: center;
@@ -258,7 +258,7 @@ html, body {
 }
 .testimonial-section {
   padding: 60px 40px;
-  background-image: url(/Speak-Easy/images1/background5.png);
+  background-image: url(/background5.png);
 
 
   background-position: center;
