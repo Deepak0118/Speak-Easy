@@ -56,3 +56,37 @@
     typeEffect();
     
   };
+
+  const track = document.querySelector('.testimonial-track');
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+  const cards = document.querySelectorAll('.testimonial-card');
+  let currentIndex = 0;
+
+  function updateSliderPosition() {
+    const cardWidth = cards[0].offsetWidth;
+    track.style.transform = `translateX(-${currentIndex * (cardWidth + 24)}px)`; // 24px is the gap
+  }
+
+  prevButton.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSliderPosition();
+    }
+  });
+
+  nextButton.addEventListener('click', () => {
+    if (currentIndex < cards.length - 1) {
+      currentIndex++;
+      updateSliderPosition();
+    }
+  });
+
+  
+  track.addEventListener('mouseover', () => {
+    track.style.animationPlayState = 'paused';
+  });
+
+  track.addEventListener('mouseout', () => {
+    track.style.animationPlayState = 'running';
+  });
