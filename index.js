@@ -1,5 +1,4 @@
-
- 
+// Speak Easy - JavaScript Code
     const textElement = document.getElementById("animated-text");
     const floatingWords = document.getElementById("floatingWords");
     const texts = ["Speak Easy"];
