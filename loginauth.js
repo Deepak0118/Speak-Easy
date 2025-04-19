@@ -37,7 +37,7 @@ app.get("/logout", (req, res) => {
   });
 });
 
-// Passport config
+
 passport.serializeUser((user, done) => {
   done(null, user);
 });
