@@ -12,7 +12,7 @@ const verifyToken = async (token) => {
   try {
     const decodedToken = await admin.auth().verifyIdToken(token);
 
-    // Save login info in Firestore
+  
     await db.collection('logins').add({
       uid: decodedToken.uid,
       email: decodedToken.email,

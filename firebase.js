@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const serviceAccountPath = path.join(__dirname, './credentials/speakeasykey.json');
 const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf-8'));
 
-// Initialize Firebase Admin
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   
