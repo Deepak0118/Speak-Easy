@@ -4,9 +4,10 @@ html, body {
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
 
+    background-image: url(/Homebg.jpg);
+
+
     background-image: url(homepage.jpg);
-
-
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -95,6 +96,8 @@ html, body {
     justify-content: center;
     height: 100vh;
     gap: 1.2rem;
+
+    background-image:url(/Homebg.jpg);
 
     background-image: url(home.jpg);
 
@@ -206,9 +209,13 @@ html, body {
 }
 .stats-section {
 
+  background-image: url(/background5.png);
+
+
   background-image: url(background5.png);
 
   
+
 
   padding: 60px 20px;
   text-align: center;
@@ -270,7 +277,11 @@ html, body {
 .testimonial-section {
   padding: 60px 40px;
 
+  background-image: url(/background5.png);
+
+
   background-image: url(background5.png);
+
 
 
 
