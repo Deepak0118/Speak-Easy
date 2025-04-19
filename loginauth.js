@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
-// Middleware
+
 app.use(session({
   secret: process.env.SESSION_SECRET || "defaultsecret",
   resave: false,

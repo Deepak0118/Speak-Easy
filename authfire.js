@@ -1,4 +1,4 @@
-// auth.js
+
 
 import express from 'express';
 import admin from './firebase.js';
