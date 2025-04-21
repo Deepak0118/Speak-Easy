@@ -50,42 +50,38 @@
         setTimeout(typeEffect, 150);
       }
     }
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+          const item = button.parentElement;
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    
+          // Close all other FAQ items
+          document.querySelectorAll('.faq-item').forEach(faqItem => {
+            faqItem.classList.remove('active');
+            faqItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+    
+          // Toggle the clicked FAQ item
+          if (!isExpanded) {
+            item.classList.add('active');
+            button.setAttribute('aria-expanded', 'true');
+          }
+        });
+    
+        // Add keyboard accessibility
+        button.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            button.click();
+          }
+        });
+      });
+    });
   window.onload = () => {
     populateFloatingWords();
     typeEffect();
     
   };
 
-  const track = document.querySelector('.testimonial-track');
-  const prevButton = document.querySelector('.prev');
-  const nextButton = document.querySelector('.next');
-  const cards = document.querySelectorAll('.testimonial-card');
-  let currentIndex = 0;
-
-  function updateSliderPosition() {
-    const cardWidth = cards[0].offsetWidth;
-    track.style.transform = `translateX(-${currentIndex * (cardWidth + 24)}px)`; // 24px is the gap
-  }
-
-  prevButton.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateSliderPosition();
-    }
-  });
-
-  nextButton.addEventListener('click', () => {
-    if (currentIndex < cards.length - 1) {
-      currentIndex++;
-      updateSliderPosition();
-    }
-  });
-
-  
-  track.addEventListener('mouseover', () => {
-    track.style.animationPlayState = 'paused';
-  });
-
-  track.addEventListener('mouseout', () => {
-    track.style.animationPlayState = 'running';
-  });
+ 
