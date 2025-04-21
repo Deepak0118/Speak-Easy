@@ -257,6 +257,7 @@ html, body {
   font-size: 28px;
   margin-bottom: 8px;
   color: #d1d1ff;
+  border : 0 px;
 }
 
 .stat-card p {
