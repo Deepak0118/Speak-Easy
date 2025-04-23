@@ -566,7 +566,8 @@ footer {
 }
 
 .icon:hover {
-  background-color: #a066af; /* Purple shade */
+  background:  #00fff0;
+  /*background-color: #a066af; /* Purple shade */
   color: #fff;
 }
 
