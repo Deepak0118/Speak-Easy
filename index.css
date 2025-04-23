@@ -524,9 +524,11 @@ footer {
   color: #ffffff;
   transition: color 0.3s ease;
 }
-
-
+.footer-section h3 a:hover {
+  color: #8fc0f0;
+}
     
+        
 .footer-section p {
   font-size: 14px;
   line-height: 1.6;
