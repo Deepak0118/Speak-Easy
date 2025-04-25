@@ -204,23 +204,29 @@
     }
 
     .divider {
-      margin: 20px 0;
-      position: relative;
-      color: #ccc;
-    }
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #ccc;
+  margin: 20px 0;
+  font-size: 14px;
+}
 
-    .divider::before,
-    .divider::after {
-      content: "";
-      height: 1px;
-      width: 40%;
-      background: rgba(255, 255, 255, 0.2);
-      position: absolute;
-      top: 50%;
-    }
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
 
-    .divider::before { left: 0; }
-    .divider::after { right: 0; }
+.divider::before {
+  margin-right: 10px;
+}
+
+.divider::after {
+  margin-left: 10px;
+}
 
     .google-btn {
       display: flex;
