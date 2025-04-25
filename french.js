@@ -1,0 +1,210 @@
+
+let questions = [
+    { 
+        question: 'Which one of these is "cat"?', 
+        options: [
+            { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/d6508c5ea6ebcb4859df33c80acd8d8c', text: 'le garçon', answer: false },
+            { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/b40a713e2c973cb54c3c5bb67ef19af4', text: 'homme', answer: false },
+            { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9', text: 'le chat', answer: true }
+        ]
+    },
+    { 
+        question: 'Which one of these is "The boy"?', 
+        options: [
+            { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/d6508c5ea6ebcb4859df33c80acd8d8c', text: 'le garçon', answer: true },
+            { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9', text: 'le Chat', answer: false },
+            { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/b40a713e2c973cb54c3c5bb67ef19af4', text: 'homme', answer: false }
+        ]
+    },
+    {
+            question: 'Which one of these is "One"?', 
+            options: [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/4be10d03a4c6ac4078b6be0df2eb5247', text: 'un', answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9', text: 'le chat', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/b40a713e2c973cb54c3c5bb67ef19af4', text: 'homme', answer: false }
+            ]
+        },
+        { 
+            question: 'Which one of these is "The man"?', 
+            options: [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/d6508c5ea6ebcb4859df33c80acd8d8c', text: 'le garçon', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/b40a713e2c973cb54c3c5bb67ef19af4', text: 'homme', answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/9aa862ebf2f8636383e54ce23d340db9', text: 'le chat', answer: false }
+            ]
+        },
+        { 
+            question: 'Which one of these is "Coffee"?', 
+            options: [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/18a521f1507cb86689faa5b2e8277703', text: 'le thé', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e', text: 'le café', answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/dd6539160d13378bd15c527d27f1464a', text: 'le jus', answer: false }
+            ]
+        },
+        { 
+            question: 'which one of these is "Water"?', 
+            options: [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be', text: 'eau', answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/93173abe106bfaa1e2df6512e1704529', text: 'le verre', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e', text: 'le café', answer: false }
+            ]
+        },
+        {   question: 'Which one of these is "The juice"?',
+            options:  [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/dd6539160d13378bd15c527d27f1464a',text:"le jus" ,answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/1f0a654aa7c65395487d98fd4784c718',text: 'le serveur', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/6fd84b8a838c43c4a84b44b08b10177e',text:'le café', answer: false }
+            ]
+        },
+        {   question: 'which of these is "The glass"?',
+            options:  [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/93173abe106bfaa1e2df6512e1704529',text:'verre vide', answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/7afea32bcf0e8c6f9d446ad4aad416be',text: 'eau', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/dd6539160d13378bd15c527d27f1464a',text:'le jus', answer: false }
+            ]
+        },
+        {   question: 'which of these is "The woman" ?',
+            options:  [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/52275a140b3fb918b49449a08283ec80',text: 'femme', answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/d6508c5ea6ebcb4859df33c80acd8d8c',text: 'le garçon', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/b40a713e2c973cb54c3c5bb67ef19af4',text: 'homme', answer: false }
+            ]
+        },
+        {   question: 'which of these is "girl"?',
+            options:  [
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/a443582c1eb03f3fcebfff4febdba3e4',text:'fille', answer: true },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/52275a140b3fb918b49449a08283ec80',text: 'femme', answer: false },
+                { img: 'https://d2pur3iezf4d1j.cloudfront.net/images/d6508c5ea6ebcb4859df33c80acd8d8c',text: 'le garçon' ,answer: false }
+            ]
+        },
+  ];
+
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let timerInterval;
+
+  function speakText(text) {
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
+  function showPronounceModal(correctWord) {
+    const modal = document.getElementById('pronounceModal');
+    modal.style.display = 'flex';
+    document.getElementById('pronounceYes').onclick = () => {
+      modal.style.display = 'none';
+      speakText(correctWord);
+      showRepeatModal(correctWord);
+    };
+    document.getElementById('pronounceNo').onclick = () => {
+      modal.style.display = 'none';
+      currentQuestionIndex++;
+      loadQuestion();
+    };
+  }
+  function showRepeatModal(correctWord) {
+    const modal = document.getElementById('repeatModal');
+    modal.style.display = 'flex';
+    document.getElementById('repeatPronounce').onclick = () => {
+      speakText(correctWord);
+    };
+    document.getElementById('nextQuestion').onclick = () => {
+      modal.style.display = 'none';
+      currentQuestionIndex++;
+      loadQuestion();
+    };
+  }
+
+  function loadQuestion() {
+    document.getElementById('timerDisplay').style.display = 'inline-block';
+    if (currentQuestionIndex < questions.length) {
+      const questionData = questions[currentQuestionIndex];
+      document.getElementById('question').innerText = questionData.question;
+      const optionsDiv = document.getElementById('options');
+      optionsDiv.innerHTML = '';
+      questionData.options.forEach((option, idx) => {
+        const optionCard = document.createElement('div');
+        optionCard.classList.add('col-sm-4', 'col-md-3', 'card', 'm-2', 'p-2');
+        optionCard.setAttribute('data-answer', option.answer);
+        optionCard.setAttribute('data-idx', idx);
+        optionCard.onclick = () => handleAnswer(optionCard, option.answer, questionData.options);
+        optionCard.innerHTML = `
+          <div class="card-body">
+            <img src="${option.img}" class="img-fluid">
+            <p class="mt-2 font-weight-bold">${option.text}</p>
+          </div>`;
+        optionsDiv.appendChild(optionCard);
+      });
+      startTimer();
+    } else {
+      document.getElementById('question').innerText = '🎉 Quiz Finished! Your score is ' + score;
+      document.getElementById('options').innerHTML = '';
+      document.getElementById('result').innerText = '';
+      clearInterval(timerInterval);
+      document.getElementById('timerDisplay').style.display = 'none';
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+  }
+
+  function handleAnswer(selectedCard, isCorrect, options) {
+    const allCards = document.querySelectorAll('.card');
+    allCards.forEach(c => {
+      c.classList.add('disabled');
+      c.onclick = null;
+    });
+    clearInterval(timerInterval);
+
+    if (isCorrect) {
+      selectedCard.classList.add('bg-success');
+      score++;
+    } else {
+      selectedCard.classList.add('bg-danger');
+      allCards.forEach(card => {
+        if (card.getAttribute('data-answer') === 'true') {
+          card.classList.add('bg-success');
+        }
+      });
+    }
+
+    const correctOption = options.find(opt => opt.answer);
+
+    setTimeout(() => {
+      showPronounceModal(correctOption.text);
+    }, 500);
+  }
+
+  function startTimer() {
+    let timeLeft = 15;
+    const timerDisplay = document.getElementById('timerDisplay');
+    timerDisplay.classList.remove('urgency');
+    timerDisplay.innerText = timeLeft;
+    timerInterval = setInterval(() => {
+      timeLeft--;
+      timerDisplay.innerText = timeLeft;
+      if (timeLeft <= 5) {
+        timerDisplay.classList.add('urgency');
+      }
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        const allCards = document.querySelectorAll('.card');
+        allCards.forEach(c => {
+          c.classList.add('disabled');
+          c.onclick = null;
+          if (c.getAttribute('data-answer') === 'true') {
+            c.classList.add('bg-success');
+          }
+        });
+        setTimeout(() => {
+          let correctOption = questions[currentQuestionIndex].options.find(opt => opt.answer);
+          showPronounceModal(correctOption.text);
+        }, 500);
+      }
+    }, 1000);
+  }
+
+  loadQuestion();
+  
