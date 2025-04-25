@@ -262,7 +262,7 @@
     }
 
     .input-group__error {
-      color: #ff7777;
+      color: yellow;
       font-size: 13px;
       margin-top: -5px;
       margin-bottom: 5px;
@@ -277,6 +277,9 @@
     .input-group {
       margin-bottom: 10px;
 
+    }
+    .input--error2{
+      border:2 px solid red !important;
     }
   </style>
 </head>
@@ -301,12 +304,15 @@
       <div class="avatar"></div>
       <form id="login-form">
         <div class="input-group">
-          <input type="text" placeholder="Username" data-field="username" />
+          <input type="text" placeholder="Username" data-field="Username" />
           <div class="input-group__error"></div>
         </div>
         <div class="input-group">
-          <input type="password" placeholder="Password" data-field="password" />
+          
+          <input type="password" placeholder="Password" data-field="Password" />
           <div class="input-group__error"></div>
+          <div class="input-group__error2"></div>
+          
         </div>
         <div class="options">
           <label class="remember"><input type="checkbox" /> Remember</label>
@@ -338,7 +344,13 @@
         inputElement.classList.add('input--error');
         errorMessageElement.textContent = `Please fill out ${field}`;
         return false;
-      } else {
+  }
+      if(field === "Password" && value.length < 6){
+        inputElement.classList.add('input--error2');
+        errorMessageElement.textContent = `${field} can't be less than 6 characters`;
+        return false;
+      }
+      else{
         inputElement.classList.remove('input--error');
         errorMessageElement.textContent = '';
         return true;
