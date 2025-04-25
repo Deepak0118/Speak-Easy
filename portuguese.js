@@ -1,8 +1,8 @@
 let questions = [
     {   question: 'which of these is "pencil"?',
     options:  [
-        { img: 'pencil-removebg-preview.png',text: 'lápis', answer: true },
-        { img: 'pen-removebg-preview.png',text: 'pena', answer: false },
+        { img: 'pencil.jpg',text: 'lápis', answer: true },
+        { img: 'pen.jpg',text: 'pena', answer: false },
         { img: 'https://tse2.mm.bing.net/th?id=OIP.Asg_j2qBjTgoj5q9ZXSNvgHaJb&pid=Api&P=0&h=180',text: 'livro', answer: false }
         ]
     },
