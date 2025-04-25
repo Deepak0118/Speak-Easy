@@ -72,7 +72,7 @@ let questions = [
         options:  [
             { img: 'https://emojis.wiki/emoji-pics/facebook/house-facebook.png',text:'casa', answer: true },
             { img: 'https://symbl-world.akamaized.net/i/webp/f5/f6918df7b639080a618e248db22d6c.webp',text: 'escola', answer: false },
-            { img: 'https://emoji-copy.com/imaj/2048/1F3E5.webp',text: 'hospital' ,answer: false }
+            { img: 'https://th.bing.com/th/id/OIP.-UaQjK9gihRQEQNqeCg0pgHaHa?w=173&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7',text: 'hospital' ,answer: false }
         ]
     },
     // or jada options krne hai tph yha kr sakte haii   !!
