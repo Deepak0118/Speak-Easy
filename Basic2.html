@@ -5,6 +5,280 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Speak Easy Login</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('loginpage3.0.jpg') no-repeat center top;
+      background-size: cover;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .navbar {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(15, 15, 30, 0.6);
+      padding: 14px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-sizing: border-box;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      color: white;
+      font-weight: 600;
+      gap: 10px;
+    }
+
+    .navbar .logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #00e0ff;
+      background-color: #ffffff10;
+      padding: 3px;
+    }
+
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 18px;
+    }
+
+    .navbar ul li a {
+      position: relative;
+      text-decoration: none;
+      color: #e0e0ff;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar ul li a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #d17bff, #00b2ff, #00fff0);
+      border-radius: 50px;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    .navbar ul li a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .login-container {
+      margin-left: 12%;
+      display: flex;
+      align-items: center;
+      margin-top: 4%;
+    }
+
+    .login-box {
+      width: 320px;
+      padding: 26px;
+      border-radius: 25px;
+      backdrop-filter: blur(15px);
+      background: transparent;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), 0 0 60px rgba(255, 0, 255, 0.1);
+      animation: fadeIn 1s ease-out;
+      transition: 0.3s;
+      position: relative;
+      color: #fff;
+    }
+
+    .login-box::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(90deg, #d17bff, #00b2ff, #00fff0);
+      z-index: -1;
+      border-radius: 27px;
+      padding: 2px;
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+      filter: blur(2px);
+    }
+
+    .login-box:hover {
+      transform: translateY(-8px) scale(1.03);
+    }
+
+    .login-title {
+      text-align: center;
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+      font-weight: 500;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: url('https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png') no-repeat center;
+      background-size: contain;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      outline: none;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 14px;
+    }
+
+    .login-box input::placeholder {
+      color: #ccc;
+    }
+
+    .login-box input:focus {
+      box-shadow: 0 0 10px #00f0ff;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin: 10px 0;
+      color: white;
+    }
+
+    .options .remember {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(to right, #ff00c8, #00f0ff);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 15px #00f0ff;
+    }
+
+    .login-btn:hover {
+      transform: scale(1.03);
+    }
+
+    .divider {
+      margin: 20px 0;
+      position: relative;
+      color: #ccc;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      width: 40%;
+      background: rgba(255, 255, 255, 0.2);
+      position: absolute;
+      top: 50%;
+    }
+
+    .divider::before { left: 0; }
+    .divider::after { right: 0; }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: white;
+      color: #333;
+      padding: 10px;
+      border-radius: 25px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      width: 100%;
+    }
+
+    .google-btn img {
+      height: 20px;
+    }
+
+    .signup-link {
+      margin-top: 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .signup-link p {
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: #00b2ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    .input-group__error {
+      color: #ff7777;
+      font-size: 13px;
+      margin-top: -5px;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    .input--error {
+      border: 2px solid red !important;
+      margin:50px;
+    }
+
+    .input-group {
+      margin-bottom: 10px;
+
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
@@ -20,312 +294,69 @@
       <li><a href="login3.html">Login/Sign Up</a></li>
     </ul>
   </nav>
+
   <div class="login-container">
     <div class="login-box">
       <h2 class="login-title">Login to Continue..</h2>
       <div class="avatar"></div>
-      <input type="text" placeholder="Username" />
-      <input type="password" placeholder="Password" />
-      <div class="options">
-        <label class="remember"><input type="checkbox" /> Remember</label>
-        <a href="#">Forgot Password?</a>
-      </div>
-      
-      <button class="login-btn">LOGIN</button>
+      <form id="login-form">
+        <div class="input-group">
+          <input type="text" placeholder="Username" data-field="username" />
+          <div class="input-group__error"></div>
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="Password" data-field="password" />
+          <div class="input-group__error"></div>
+        </div>
+        <div class="options">
+          <label class="remember"><input type="checkbox" /> Remember</label>
+          <a href="#">Forgot Password?</a>
+        </div>
+        <button type="submit" class="login-btn">LOGIN</button>
+      </form>
       <div class="divider">OR</div>
       <button class="google-btn">
         <img src="https://img.icons8.com/color/48/000000/google-logo.png" />
         Log in with Google
       </button>
       <div class="signup-link">
-        
         <p>Don't have an account? <a href="signuptest.html">Sign Up</a></p>
       </div>
     </div>
   </div>
 
+  <script>
+    function validateInput(inputElement) {
+      const value = inputElement.value.trim();
+      const field = inputElement.dataset.field;
+      const group = inputElement.closest('.input-group');
+      if (!group) return true;
+      const errorMessageElement = group.querySelector('.input-group__error');
+
+      if (value === '') {
+        inputElement.classList.add('input--error');
+        errorMessageElement.textContent = `Please fill out ${field}`;
+        return false;
+      } else {
+        inputElement.classList.remove('input--error');
+        errorMessageElement.textContent = '';
+        return true;
+      }
+    }
+
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const inputs = document.querySelectorAll('#login-form input[data-field]');
+      let allValid = true;
+      inputs.forEach(input => {
+        if (!validateInput(input)) allValid = false;
+      });
+
+      if (allValid) {
+        const username = document.querySelector('input[data-field="username"]').value.trim();
+        window.location.href = `./EnglishLevels.html?username=${encodeURIComponent(username)}`;
+      }
+    });
+  </script>
 </body>
 </html>
-<style>
-    body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    font-family: 'Segoe UI', sans-serif;
-    background: url('loginpage3.0.jpg') no-repeat center top;
-    background-position-y: 0px;
-    background-size: cover;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
-    display: flex;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, sans-serif;
-      }
-      .navbar {
-          width: 100%;
-          position: fixed;
-          top: 0;
-          left: 0;
-          backdrop-filter: blur(12px);
-          background: rgba(15, 15, 30, 0.6);
-          background-color: transparent;
-          padding: 14px 40px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          box-sizing: border-box;
-          z-index: 1000;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-          
-        }
-    
-        .navbar .logo {
-          display: flex;
-          align-items: center;
-          font-size: 1.6rem;
-          color: white;
-          font-weight: 600;
-          gap: 10px;
-        }
-    
-        .navbar .logo img {
-          width: 48px;
-          height: 48px;
-          border-radius: 50%;
-          border: 2px solid #00e0ff;
-          background-color: #ffffff10;
-          padding: 3px;
-        }
-    
-        .navbar ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          display: flex;
-          gap: 18px;
-        }
-    
-        .navbar ul li a {
-          position: relative;
-          text-decoration: none;
-          color: #e0e0ff;
-          font-weight: 500;
-          font-size: 1rem;
-          padding: 8px 16px;
-          border-radius: 8px;
-          transition: all 0.3s ease;
-        }
-    
-        .navbar ul li a::after {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: -4px;
-          width: 100%;
-          height: 3px;
-          background: linear-gradient(90deg, #d17bff, #00b2ff, #00fff0);
-          border-radius: 50px;
-          transform: scaleX(0);
-          transform-origin: bottom right;
-          transition: transform 0.3s ease-out;
-        }
-    
-        .navbar ul li a:hover::after {
-          transform: scaleX(1);
-          transform-origin: left;
-        }
-  
-  
-  
-  .login-container {
-    margin-left: 12%;
-    display: flex;
-    align-items: center;
-    margin-top: 4%;
-  }
-  
-  .login-box {
-    width: 320px;
-    padding: 26px;
-    border-radius: 25px;
-    border: 4px solid linear-gradient(to right, #ff00c8, #00f0ff) ;
-    backdrop-filter: blur(15px);
-    background:transparent;
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), 0 0 60px rgba(255, 0, 255, 0.1);
-    animation: fadeIn 1s ease-out;
-    transition: 0.3s;
-    
-    
-    background-origin: padding-box, border-box;
-    /* Glowing border */
-    text-align: center;
-    color: #fff;
-  }
-  .login-box::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(90deg, #d17bff, #00b2ff, #00fff0);
-    z-index: -1;
-    border-radius: 27px;
-    padding: 2px;
-    -webkit-mask: 
-      linear-gradient(#fff 0 0) content-box, 
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask-composite: exclude;
-    filter: blur(2px);
-  }
-  .login-box:hover {
-          transform: translateY(-8px) scale(1.03);
-          box-shadow: linear-gradient( #ff00c8, #00f0ff);
-      }
-  .login-title {
-    text-align: center;
-    font-size: 1.90rem;
-    color: #fff;
-    margin-bottom: 10px;
-    font-weight: 500;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-  }
-  .avatar {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    margin: 0 auto 20px;
-    background: url('https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png') no-repeat center;
-    background-size: contain;
-  }
-  
-  .login-box input {
-    width: 100%;
-    padding: 10px 10px;
-    margin: 8px 0;
-    border: none;
-    outline: none;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-size: 14px;
-    transition: 0.3s;
-  }
-  
-  .login-box input::placeholder {
-    color: #ccc;
-  }
-  
-  .login-box input:focus {
-    box-shadow: 0 0 10px #00f0ff;
-  }
-  
-  
-  .options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    margin: 10px 0;
-    color: white;
-  }
-  
-  .options .remember {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .login-btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 25px;
-    background: linear-gradient(to right, #ff00c8, #00f0ff);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 15px #00f0ff;
-  }
-  
-  .login-btn:hover {
-    transform: scale(1.03);
-  }
-  
-  .divider {
-    margin: 20px 0;
-    position: relative;
-    color: #ccc;
-  }
-  
-  .divider::before,
-  .divider::after {
-    content: "";
-    height: 1px;
-    width: 40%;
-    background: rgba(255, 255, 255, 0.2);
-    position: absolute;
-    top: 50%;
-  }
-  
-  .divider::before { left: 0; }
-  .divider::after { right: 0; }
-  
-  .google-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: white;
-    color: #333;
-    padding: 10px;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    width: 100%; /* make it match login box width */
-    box-sizing: border-box;
-  }
-  
-  
-  
-  .google-btn img {
-    height: 20px;
-   
-  }
-  
-  .signup-link {
-    margin-top: 20px;
-    text-align: center;
-    color: #fff;
-  }
-  
-  .signup-link hr {
-    border: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    margin: 10px 0;
-  }
-  
-  .signup-link p {
-    font-size: 14px;
-  }
-  
-  .signup-link a {
-    color: #00b2ff;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .signup-link a:hover {
-    text-decoration: underline;
-  }
-  
-  
-</style>
