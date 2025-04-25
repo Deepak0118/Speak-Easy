@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'images1')));
 
 // Routes
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "Basic.html"));
+  res.sendFile(path.join(__dirname, "Basic2.html"));
 });
 
 app.get("/logout", (req, res) => {
@@ -47,9 +47,11 @@ passport.deserializeUser((user, done) => {
 
 // Google OAuth Strategy
 passport.use(new GoogleStrategy({
-  clientID: "1076848820034-fa4mc9j3ogu840m0ohjioqgqc2hp64cq.apps.googleusercontent.com",
-  clientSecret: "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",
-  callbackURL: "/auth/google/callback",
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.NODE_ENV === 'production' 
+    ? 'https://speak-easy.vercel.app/auth/google/callback' 
+    : 'http://localhost:3000/auth/google/callback', // for local development
 },
 async (accessToken, refreshToken, profile, done) => {
   // Save user info to Firestore
@@ -81,7 +83,7 @@ app.get("/auth/google/callback",
   }
 );
 
-// Start server
+
 app.listen(3000, () => {
   console.log("Server started on http://localhost:3000");
 });
