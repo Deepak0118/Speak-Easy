@@ -1,7 +1,8 @@
 * { font-family: 'Poppins', sans-serif; }
 body {
   background-image: url(background5.png);
-  min-height: 100vh;
+  background-image: fixed;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
