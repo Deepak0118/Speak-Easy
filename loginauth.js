@@ -52,7 +52,7 @@ passport.use(new GoogleStrategy({
   callbackURL: process.env.NODE_ENV === 'production' 
     ? 'https://speak-easy-gray.vercel.app/auth/google/callback' 
     : 'http://localhost:3000/auth/google/callback',
-},
+
 async (accessToken, refreshToken, profile, done) => {
   // Save user info to Firestore
   try {
