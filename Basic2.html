@@ -337,7 +337,6 @@
       </div>
     </div>
   </div>
-
   <script>
     function validateInput(inputElement) {
       const value = inputElement.value.trim();
@@ -372,10 +371,12 @@
       });
 
       if (allValid) {
-        const username = document.querySelector('input[data-field="username"]').value.trim();
-        
+        const username = document.querySelector('input[data-field="Username"]').value.trim();
+        window.location.href = `chooselang.html?username=${encodeURIComponent(username)}`;
+
       }
     });
   </script>
+  
 </body>
 </html>
