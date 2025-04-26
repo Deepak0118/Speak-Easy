@@ -9,7 +9,10 @@
   <script src="chooselang.js" defer></script>
 </head>
 <body>
-  <h2>I Want To Learn</h2>
+  <h2 id="welcome-message"></h2>
+  <h2> I want to learn!</h2>
+  
+ 
   <div class="card-container">
     <div class="card" data-lang="english">
       <img src="https://flagcdn.com/w320/gb.png" alt="English">
@@ -47,3 +50,16 @@
   
 </body>
 </html>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const username = params.get('username');
+  const welcomeEl = document.getElementById('welcome-message');
+
+  if (username) {
+    welcomeEl.textContent = `Welcome, ${username}!`;
+  } else {
+    welcomeEl.textContent = `Welcome to Speak Easy!`;
+  }
+</script>
+
+

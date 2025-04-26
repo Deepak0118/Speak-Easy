@@ -47,12 +47,12 @@ passport.deserializeUser((user, done) => {
 
 // Google OAuth Strategy
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  clientID: "1076848820034-fa4mc9j3ogu840m0ohjioqgqc2hp64cq.apps.googleusercontent.com",
+  clientSecret: "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",
   callbackURL: process.env.NODE_ENV === 'production' 
     ? 'https://speak-easy-gray.vercel.app/auth/google/callback' 
-    : 'http://localhost:3000/auth/google/callback', // for local development
-},
+    : 'http://localhost:3000/auth/google/callback',
+
 async (accessToken, refreshToken, profile, done) => {
   // Save user info to Firestore
   try {

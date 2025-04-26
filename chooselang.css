@@ -144,4 +144,13 @@
         flex-wrap: wrap;
         margin-top: 10px;
       }
+
+
+    }
+    #welcome-message {
+      font-size: 2rem;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom:5px;
+      font-weight: bold;
     }
