@@ -50,7 +50,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: process.env.NODE_ENV === 'production' 
-    ? 'https://speak-easy.vercel.app/auth/google/callback' 
+    ? 'https://speak-easy-gray.vercel.app/auth/google/callback' 
     : 'http://localhost:3000/auth/google/callback', // for local development
 },
 async (accessToken, refreshToken, profile, done) => {
