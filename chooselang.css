@@ -148,9 +148,11 @@
 
     }
     #welcome-message {
-      font-size: 2rem;
+      font-size: 2.5rem;
       text-align: center;
-      margin-top: 50px;
-      margin-bottom:5px;
+      margin-top: 80px;
       font-weight: bold;
+      color: #3498db
     }
+
+     

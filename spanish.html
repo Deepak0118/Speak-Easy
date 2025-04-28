@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPEAK EASY</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="spanish.css">
+  <script src="Spanish.js" defer></script>
+ 
+</head>
+<body>
+  <div id="timerDisplay" class="timer-container">15</div>
+  <div class="container text-center">
+    <h2 class="mb-4" id="question">Question will appear here</h2>
+    <div id="options" class="row justify-content-center"></div>
+    <div id="result" class="mt-4"></div>
+  </div>
+  
+  <div id="pronounceModal">
+    <div class="modal-content">
+      <div class="mb-3">Do you want to know the pronunciation of the correct word?</div>
+      <button id="pronounceYes" class="btn mx-2">Yes</button>
+      <button id="pronounceNo" class="btn mx-2">No</button>
+    </div>
+  </div>
+  
+  <div id="repeatModal">
+    <div class="modal-content">
+      <div class="mb-3">Do you want to pronounce it again?</div>
+      <button id="repeatPronounce" class="btn mx-2">Pronounce Again</button>
+      <button id="nextQuestion" class="btn mx-2">Next Question</button>
+    </div>
+  </div>
+  
+</body>
+</html>
