@@ -74,13 +74,13 @@
 
       if (value === '') {
         inputElement.classList.add('input--error');
-        errorMessageElement.textContent = Please fill out ${field};
+        errorMessageElement.textContent = `Please fill out ${field}`;
         return false;
       }
 
       if (field === "password" && value.length < 6) {
         inputElement.classList.add('input--error2');
-        errorMessageElement.textContent = ${field} can't be less than 6 characters;
+        errorMessageElement.textContent = `${field} can't be less than 6 characters`;
         return false;
       }
 
@@ -88,7 +88,7 @@
         const password = document.querySelector('input[data-field="password"]').value.trim();
         if (value !== password) {
           inputElement.classList.add('input--error2');
-          errorMessageElement.textContent = ${field} doesn't match;
+          errorMessageElement.textContent = `${field} doesn't match`;
           return false;
         }
       }
@@ -112,7 +112,7 @@
         document.getElementById('loader').style.display = 'block';
 
         setTimeout(() => {
-          window.location.href = loading.html?username=${encodeURIComponent(username)};
+          window.location.href = `loading.html?username=${encodeURIComponent(username)}`;
         }, 2000);
       }
     });
