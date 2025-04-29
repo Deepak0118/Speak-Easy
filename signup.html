@@ -4,6 +4,121 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Speak Easy</title>
+
+  <link rel="icon" type="image/jpg" href="fi.jpg">
+  <link href="signup.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.jpg" alt="Logo" />
+      <span>Speak Easy</span>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html">Stats</a></li>
+      <li><a href="index.html">Testimonials</a></li>
+      <li><a href="index.html">FAQ</a></li>
+      <li><a href="Basic2.html">Login/Sign Up</a></li>
+    </ul>
+  </nav>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h2 class="login-title">Create Your Account</h2>
+
+      <div class="avatar"></div>
+      <form id="login-form">
+        <div class="input-group">
+          <input type="text" placeholder="Username" data-field="username" required />
+          <div class="input-group__error"></div>
+        </div>
+        <div class="input-group">
+          <input type="email" placeholder="Email" data-field="email" required />
+          <div class="input-group__error"></div>
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="Password" data-field="password" required />
+          <div class="input-group__error"></div>
+        </div>
+        <div class="input-group">
+          <input type="password" placeholder="Confirm Password" data-field="confirm-password" required />
+          <div class="input-group__error"></div>
+        </div>
+
+        <div class="options">
+          <label class="remember"><input type="checkbox" required /> I agree to terms</label>
+          <a href="#">Need help?</a>
+        </div>
+
+        <button class="login-btn" type="submit">SIGN UP</button>
+      </form>
+
+      <div class="divider">OR</div>
+      <button class="google-btn">
+        <img src="https://img.icons8.com/color/48/000000/google-logo.png" />
+        Sign up with Google
+      </button>
+    </div>
+  </div>
+
+  <!-- Loader Element -->
+  <div id="loader" style="display: none; text-align: center; margin-top: 20px;">Loading...</div>
+
+  <script>
+    function validateInput(inputElement) {
+      const value = inputElement.value.trim();
+      const field = inputElement.dataset.field;
+      const group = inputElement.closest('.input-group');
+      if (!group) return true;
+      const errorMessageElement = group.querySelector('.input-group__error');
+
+      if (value === '') {
+        inputElement.classList.add('input--error');
+        errorMessageElement.textContent = Please fill out ${field};
+        return false;
+      }
+
+      if (field === "password" && value.length < 6) {
+        inputElement.classList.add('input--error2');
+        errorMessageElement.textContent = ${field} can't be less than 6 characters;
+        return false;
+      }
+
+      if (field === "confirm-password") {
+        const password = document.querySelector('input[data-field="password"]').value.trim();
+        if (value !== password) {
+          inputElement.classList.add('input--error2');
+          errorMessageElement.textContent = ${field} doesn't match;
+          return false;
+        }
+      }
+
+      inputElement.classList.remove('input--error', 'input--error2');
+      errorMessageElement.textContent = '';
+      return true;
+    }
+
+    document.getElementById('login-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const inputs = document.querySelectorAll('#login-form input[data-field]');
+      let allValid = true;
+
+      inputs.forEach(input => {
+        if (!validateInput(input)) allValid = false;
+      });
+
+      if (allValid) {
+        const username = document.querySelector('input[data-field="username"]').value.trim();
+        document.getElementById('loader').style.display = 'block';
+
+        setTimeout(() => {
+          window.location.href = loading.html?username=${encodeURIComponent(username)};
+        }, 2000);
+      }
+    });
+  </script>
+=======
   <link rel="icon" type="image/jpg" href="fi.jpg" style="border: radius 50% ;">
   <link href="signup.css" rel="stylesheet" type="text/css"/>
 
@@ -47,6 +162,6 @@
         </div>
       </div>
     </body>
-    
+   
 </body>
 </html>
