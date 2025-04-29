@@ -100,7 +100,8 @@ body {
 
 .login-box {
   width: 350px;
-  padding: 24px;
+  padding: 34px;
+  padding-left:15px;
   border-radius: 25px;
   position: relative;
   backdrop-filter: blur(15px);
