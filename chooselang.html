@@ -9,57 +9,57 @@
   <script src="chooselang.js" defer></script>
 </head>
 <body>
+  
+<canvas id="background"></canvas>
+
+<div class="container">
   <h2 id="welcome-message"></h2>
-  <h2> I want to learn!</h2>
-  
- 
-  <div class="card-container">
-    <div class="card" data-lang="english">
-      <img src="https://flagcdn.com/w320/gb.png" alt="English">
-      <div class="language-name">English</div>
+  <h1 class="title">I Want To Learn</h1>
+  <div class="cards">
+    
+    <!-- Language Cards -->
+    <div class="card blue" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/gb.svg" alt="English">
+      <div class="info"><p>English</p></div>
     </div>
-    <div class="card" data-lang="spanish">
-      <img src="https://flagcdn.com/w320/es.png" alt="Spanish">
-      <div class="language-name">Spanish</div>
+
+    <div class="card blue" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/es.svg" alt="Spanish">
+      <div class="info"><p>Spanish</p></div>
     </div>
-    <div class="card" data-lang="french">
-      <img src="https://flagcdn.com/w320/fr.png" alt="French">
-      <div class="language-name">French</div>
+
+    <div class="card orange" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/fr.svg" alt="French">
+      <div class="info"><p>French</p></div>
     </div>
-    <div class="card" data-lang="german">
-      <img src="https://flagcdn.com/w320/de.png" alt="German">
-      <div class="language-name">German</div>
+
+    <div class="card orange" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/de.svg" alt="German">
+      <div class="info"><p>German</p></div>
     </div>
-    <div class="card" data-lang="dutch">
-      <img src="https://flagcdn.com/w320/nl.png" alt="Dutch">
-      <div class="language-name">Dutch</div>
+
+    <div class="card blue" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/nl.svg" alt="Dutch">
+      <div class="info"><p>Dutch</p></div>
     </div>
-    <div class="card" data-lang="italian">
-      <img src="https://flagcdn.com/w320/it.png" alt="Italian">
-      <div class="language-name">Italian</div>
+
+    <div class="card blue" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/it.svg" alt="Italian">
+      <div class="info"><p>Italian</p></div>
     </div>
-    <div class="card" data-lang="portuguese">
-      <img src="https://flagcdn.com/w320/pt.png" alt="Portuguese">
-      <div class="language-name">Portuguese</div>
+
+    <div class="card orange" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/pt.svg" alt="Portuguese">
+      <div class="info"><p>Portuguese</p></div>
     </div>
-    <div class="card" data-lang="russian">
-      <img src="https://flagcdn.com/w320/ru.png" alt="Russian">
-      <div class="language-name">Russian</div>
+
+    <div class="card orange" onclick="selectCard(this)">
+      <img src="https://flagcdn.com/ru.svg" alt="Russian">
+      <div class="info"><p>Russian</p></div>
     </div>
+
   </div>
-  
+</div>
 </body>
 </html>
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const username = params.get('username');
-  const welcomeEl = document.getElementById('welcome-message');
-
-  if (username) {
-    welcomeEl.textContent = `Welcome, ${username}!`;
-  } else {
-    welcomeEl.textContent = `Welcome to Speak Easy!`;
-  }
-</script>
-
 
