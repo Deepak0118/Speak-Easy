@@ -120,7 +120,7 @@ const username = params.get('username');
 const welcomeEl = document.getElementById('welcome-message');
 
 if (username) {
-  welcomeEl.textContent = `Welcome, ${username}!`;
+  welcomeEl.textContent = `${username}!`;
 } else {
   welcomeEl.textContent = `Welcome to Speak Easy!`;
 }
