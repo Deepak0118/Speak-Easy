@@ -82,131 +82,193 @@ let questions = [
     
 ];
 let currentQuestionIndex = 0;
-let score = 0;
-let timerInterval;
+    let score = 0;
+    let incorrect = 0;
+    let timerInterval;
 
-function speakText(text) {
-  if ('speechSynthesis' in window) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 1;
-    utterance.pitch = 1;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
-  }
-}
-
-function showPronounceModal(correctWord) {
-  const modal = document.getElementById('pronounceModal');
-  modal.style.display = 'flex';
-  document.getElementById('pronounceYes').onclick = () => {
-    modal.style.display = 'none';
-    speakText(correctWord);
-    showRepeatModal(correctWord);
-  };
-  document.getElementById('pronounceNo').onclick = () => {
-    modal.style.display = 'none';
-    currentQuestionIndex++;
-    loadQuestion();
-  };
-}
-function showRepeatModal(correctWord) {
-  const modal = document.getElementById('repeatModal');
-  modal.style.display = 'flex';
-  document.getElementById('repeatPronounce').onclick = () => {
-    speakText(correctWord);
-  };
-  document.getElementById('nextQuestion').onclick = () => {
-    modal.style.display = 'none';
-    currentQuestionIndex++;
-    loadQuestion();
-  };
-}
-
-function loadQuestion() {
-  document.getElementById('timerDisplay').style.display = 'inline-block';
-  if (currentQuestionIndex < questions.length) {
-    const questionData = questions[currentQuestionIndex];
-    document.getElementById('question').innerText = questionData.question;
-    const optionsDiv = document.getElementById('options');
-    optionsDiv.innerHTML = '';
-    questionData.options.forEach((option, idx) => {
-      const optionCard = document.createElement('div');
-      optionCard.classList.add('col-sm-4', 'col-md-3', 'card', 'm-2', 'p-2');
-      optionCard.setAttribute('data-answer', option.answer);
-      optionCard.setAttribute('data-idx', idx);
-      optionCard.onclick = () => handleAnswer(optionCard, option.answer, questionData.options);
-      optionCard.innerHTML = `
-        <div class="card-body">
-          <img src="${option.img}" class="img-fluid">
-          <p class="mt-2 font-weight-bold">${option.text}</p>
-        </div>`;
-      optionsDiv.appendChild(optionCard);
-    });
-    startTimer();
-  } else {
-    document.getElementById('question').innerText = '🎉 Quiz Finished! Your score is ' + score;
-    document.getElementById('options').innerHTML = '';
-    document.getElementById('result').innerText = '';
-    clearInterval(timerInterval);
-    document.getElementById('timerDisplay').style.display = 'none';
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-  }
-}
-
-function handleAnswer(selectedCard, isCorrect, options) {
-  const allCards = document.querySelectorAll('.card');
-  allCards.forEach(c => {
-    c.classList.add('disabled');
-    c.onclick = null;
-  });
-  clearInterval(timerInterval);
-
-  if (isCorrect) {
-    selectedCard.classList.add('bg-success');
-    score++;
-  } else {
-    selectedCard.classList.add('bg-danger');
-    allCards.forEach(card => {
-      if (card.getAttribute('data-answer') === 'true') {
-        card.classList.add('bg-success');
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        try {
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.rate = 1;
+          utterance.pitch = 1;
+          window.speechSynthesis.cancel();
+          window.speechSynthesis.speak(utterance);
+        } catch (error) {
+          console.error("Speech synthesis error:", error);
+        }
+      } else {
+        console.warn("SpeechSynthesis is not supported in this browser.");
       }
-    });
-  }
-
-  const correctOption = options.find(opt => opt.answer);
-
-  setTimeout(() => {
-    showPronounceModal(correctOption.text);
-  }, 500);
-}
-
-function startTimer() {
-  let timeLeft = 15;
-  const timerDisplay = document.getElementById('timerDisplay');
-  timerDisplay.classList.remove('urgency');
-  timerDisplay.innerText = timeLeft;
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    timerDisplay.innerText = timeLeft;
-    if (timeLeft <= 5) {
-      timerDisplay.classList.add('urgency');
     }
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
+
+    function showPronounceModal(correctWord) {
+      const modal = document.getElementById('pronounceModal');
+      modal.style.display = 'flex';
+      document.getElementById('pronounceYes').onclick = () => {
+        modal.style.display = 'none';
+        speakText(correctWord);
+        showRepeatModal(correctWord);
+      };
+      document.getElementById('pronounceNo').onclick = () => {
+        modal.style.display = 'none';
+        currentQuestionIndex++;
+        loadQuestion();
+      };
+    }
+
+    function showRepeatModal(correctWord) {
+      const modal = document.getElementById('repeatModal');
+      modal.style.display = 'flex';
+      document.getElementById('repeatPronounce').onclick = () => {
+        speakText(correctWord);
+      };
+      document.getElementById('nextQuestion').onclick = () => {
+        modal.style.display = 'none';
+        currentQuestionIndex++;
+        loadQuestion();
+      };
+    }
+
+    function updateProgressBar() {
+      const progressBar = document.getElementById('progressBar');
+      const progressLabel = document.getElementById('progressLabel');
+      const total = questions.length;
+      const current = Math.min(currentQuestionIndex + 1, total);
+      const percent = Math.round((current / total) * 100);
+      progressBar.style.width = percent + "%";
+      progressLabel.innerText = `Question ${current} of ${total}`;
+    }
+
+    function loadQuestion() {
+      document.getElementById('timerDisplay').style.display = 'inline-block';
+      document.getElementById('progressContainer').style.display = 'block';
+      updateProgressBar();
+      if (currentQuestionIndex < questions.length) {
+        const questionData = questions[currentQuestionIndex];
+        document.getElementById('question').innerText = questionData.question;
+        const optionsDiv = document.getElementById('options');
+        optionsDiv.innerHTML = '';
+        questionData.options.forEach((option, idx) => {
+          const optionCard = document.createElement('div');
+          optionCard.classList.add('col-sm-4', 'col-md-3', 'card', 'm-2', 'p-2');
+          optionCard.setAttribute('data-answer', option.answer);
+          optionCard.setAttribute('data-idx', idx);
+          optionCard.onclick = () => handleAnswer(optionCard, option.answer, questionData.options);
+          optionCard.innerHTML = `
+            <div class="card-body">
+              <img src="${option.img}" alt="${option.text}" class="img-fluid">
+              <p class="mt-2 font-weight-bold">${option.text}</p>
+            </div>`;
+          optionsDiv.appendChild(optionCard);
+        });
+        startTimer();
+      } else {
+        showFinalScore();
+      }
+    }
+
+    function handleAnswer(selectedCard, isCorrect, options) {
       const allCards = document.querySelectorAll('.card');
       allCards.forEach(c => {
         c.classList.add('disabled');
         c.onclick = null;
-        if (c.getAttribute('data-answer') === 'true') {
-          c.classList.add('bg-success');
-        }
       });
+      clearInterval(timerInterval);
+
+      if (isCorrect) {
+        selectedCard.classList.add('bg-success');
+        score++;
+      } else {
+        selectedCard.classList.add('bg-danger');
+        incorrect++;
+        allCards.forEach(card => {
+          if (card.getAttribute('data-answer') === 'true') {
+            card.classList.add('bg-success');
+          }
+        });
+      }
+
+      const correctOption = options.find(opt => opt.answer);
+
       setTimeout(() => {
-        let correctOption = questions[currentQuestionIndex].options.find(opt => opt.answer);
         showPronounceModal(correctOption.text);
       }, 500);
     }
-  }, 1000);
-}
 
-loadQuestion();
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval); // Prevent multiple timers
+      let timeLeft = 15;
+      const timerDisplay = document.getElementById('timerDisplay');
+      timerDisplay.classList.remove('urgency');
+      timerDisplay.innerText = timeLeft;
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerDisplay.innerText = timeLeft;
+        if (timeLeft <= 5) {
+          timerDisplay.classList.add('urgency');
+        }
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          const allCards = document.querySelectorAll('.card');
+          allCards.forEach(c => {
+            c.classList.add('disabled');
+            c.onclick = null;
+            if (c.getAttribute('data-answer') === 'true') {
+              c.classList.add('bg-success');
+            }
+          });
+          incorrect++;
+          setTimeout(() => {
+            let correctOption = questions[currentQuestionIndex].options.find(opt => opt.answer);
+            showPronounceModal(correctOption.text);
+          }, 500);
+        }
+      }, 1000);
+    }
+
+    function showFinalScore() {
+      document.getElementById('timerDisplay').style.display = 'none';
+      document.getElementById('progressContainer').style.display = 'none';
+      const resultContainer = document.getElementById('options');
+      resultContainer.innerHTML = `
+        <div class="col-12">
+          <div class="card p-4 shadow-lg mx-auto" style="max-width: 400px;">
+            <h3 class="mb-3 text-dark">🎉 Quiz Finished!</h3>
+            <p class="mb-2 text-dark">Your Score: <strong>${score}/${questions.length}</strong></p>
+            <p class="mb-2 text-success">Correct: <strong>${score}</strong></p>
+            <p class="mb-4 text-danger">Incorrect: <strong>${incorrect}</strong></p>
+            <div class="d-flex flex-column gap-2">
+              <button class="btn btn-success mb-2" onclick="shareScore()">📤 Share your score</button>
+              <button class="btn btn-primary" onclick="goHome()">🏠 Home</button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('question').innerText = '';
+      document.getElementById('result').innerText = '';
+      if (timerInterval) clearInterval(timerInterval); // Cleanup
+    }
+
+    function shareScore() {
+      const text = `I scored ${score}/${questions.length} on the SPEAK EASY quiz! 🎉 Try it here: ${window.location.href}`;
+      if (navigator.share) {
+        navigator.share({
+          title: 'SPEAK EASY Quiz Score',
+          text: text,
+          url: window.location.href
+        }).catch(err => console.log('Sharing failed', err));
+      } else {
+        navigator.clipboard.writeText(text).then(() => {
+          alert("📋 Score copied! Share it on WhatsApp, Instagram, anywhere!");
+        });
+      }
+    }
+
+    function goHome() {
+      window.location.href = '/'; // Adjust as necessary
+    }
+
+    // Start the quiz
+    loadQuestion();
