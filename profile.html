@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPEAK EASY</title>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <h2>Profile Picture</h2>
+            <div class="photo-upload-wrapper">
+                <img class="profile-pic" id="profilePic" src="https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png" alt="Profile Picture">
+
+                <label for="photoUpload" class="upload-btn" id="uploadButton">Upload Photo</label>
+                <input type="file" id="photoUpload" accept="image/*" hidden>
+            </div>
+            <div class="form-group">
+                <label for="displayName">Display Name</label>
+                <input type="text" id="displayName" placeholder="Enter your name" style="width: 95%;">
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <h2>Basic Information</h2>
+            <div class="form-group">
+                <label for="aboutMe">About Me</label>
+                <textarea id="aboutMe" placeholder="Write about yourself..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills</label>
+                <input type="text" id="skills" placeholder="Enter your skills (comma-separated)">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number">
+            </div>
+            <button id="updateProfileButton" class="submit-btn">Update Profile</button>
+        </div>
+    </div>
+</body>
+</html>
+<style>
+    /* General Styling */
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        background: url(signupimage.png);
+        background-size: cover;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden; /* Prevent scrollbars */
+    }
+
+    /* Main Container */
+   /* Main Container */
+.main-container {
+    display: flex;
+    flex-wrap: wrap; /* Enable wrapping for smaller screens */
+    background: rgba(255, 255, 255, 0.19); /* Transparent glassy effect */
+    backdrop-filter: blur(15px); /* Blur effect for glassy look */
+    border-radius: 15px; /* Maintain rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 61%;
+    border: 3px solid #00f0ff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 19px #00f0ff;
+    max-height: 90vh; /* Prevent overflowing the viewport */
+    overflow-y: auto; /* Vertical scrolling if necessary */
+}
+
+
+    /* Left Section */
+    .left-section {
+        width: 35%; /* Adjusted width for better proportions */
+        padding: 18px;
+        margin-left: 20px;
+        text-align: center;
+        border-right: 2px solid rgba(255, 255, 255, 0.3); /* Separation line */
+    }
+
+    .photo-upload-wrapper {
+        position: relative;
+        margin-bottom: 50px; /* Added spacing */
+    }
+
+    .profile-pic {
+        width: 140px; /* Slightly larger profile picture */
+        height: 140px;
+        border-radius: 50%;
+        border: 1px solid #ffffff;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }
+
+    .upload-btn {
+        background: linear-gradient(90deg, #ff00c8, #00f0ff);
+        display: flex;
+        border: none;
+        margin-top: 27px;
+        justify-self: center;
+        padding: 8px 20px; /* Improved button padding */
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 0.9em;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    .upload-btn:hover {
+        background: linear-gradient(90deg, #00f0ff, #ff00c8);
+        transform: scale(1.05);
+    }
+
+    .form-group label {
+        font-size: 1em;
+        color: white;
+        display: flex;
+        width: 100%; /* Adjusted for better alignment */
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        display: flex;
+        width: 100%; /* Adjusted width */
+        padding: 10px;
+        font-size: 0.9em;
+        border: 1px solid #ddd;
+        background-color: transparent;
+        color: #69d3d1;
+        border-radius: 5px;
+    }
+
+    /* Right Section */
+    .right-section {
+        width: 41%; /* Adjusted width for better proportions */
+        padding: 20px;
+        margin-right: 90px;
+        justify-content: center;
+    }
+
+    h2 {
+        font-size: 1.5em;
+        color: white;
+        margin-bottom: 20px;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        padding-bottom: 5px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group textarea,
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9em;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+    }
+
+    textarea {
+        resize: none;
+        height: 80px; /* Controlled height for consistency */
+        background-color: transparent;
+        color: #69d3d1;
+
+    }
+
+    .submit-btn {
+        width: 70%;
+        background: linear-gradient(90deg, #ff00c8, #00f0ff);
+        border: none;
+        padding: 12px;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 1em;
+        cursor: pointer;
+        transition: 0.3s ease;
+        margin-top: 20px;
+        margin-left: 70px;
+    }
+
+    .submit-btn:hover {
+        background: linear-gradient(90deg, #00f0ff, #ff00c8);
+        transform: scale(1.05);
+    }
+
+    .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(90deg, #ff00c8, #00f0ff);
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.hidden {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .main-container {
+            flex-direction: column; /* Stack sections vertically */
+            width: 90%; /* Adjust width for smaller screens */
+            max-height: 100%; /* Allow full height */
+            overflow:auto;
+        }
+
+        .left-section,
+        .right-section {
+            width: 100%; /* Full width for both sections */
+            margin: 0; /* Remove margins */
+            padding: 10px; /* Adjust padding */
+            border-right: none; /* Remove separation line */
+        }
+
+        .submit-btn {
+            width: 90%; /* Adjust button width */
+            margin-left: 0; /* Center button */
+        }
+
+        h2 {
+            font-size: 1.2em; /* Adjust heading size */
+        }
+
+        .profile-pic {
+            width: 100px; /* Smaller profile picture */
+            height: 100px;
+        }
+
+        .upload-btn {
+            font-size: 0.8em; /* Adjust button font size */
+            padding: 6px 15px; /* Adjust padding */
+        }
+    }
+
+    @media (max-width: 480px) {
+        .main-container {
+            width: 100%; /* Full width for very small screens */
+            padding: 10px; /* Add padding */
+            
+        }
+
+        .submit-btn {
+            font-size: 0.9em; /* Adjust button font size */
+            padding: 10px; /* Adjust padding */
+        }
+
+        textarea {
+            height: 60px; /* Reduce textarea height */
+        }
+    }
+</style>
+<script>
+// Selecting all relevant elements from the form
+const profilePic = document.getElementById('profilePic');
+const photoUpload = document.getElementById('photoUpload');
+const uploadButton = document.getElementById('uploadButton');
+const displayNameInput = document.getElementById('displayName');
+const aboutMeInput = document.getElementById('aboutMe');
+const skillsInput = document.getElementById('skills');
+const emailInput = document.getElementById('email');
+const phoneInput = document.getElementById('phone');
+const updateProfileButton = document.getElementById('updateProfileButton');
+const notification = document.createElement('div'); // Create notification dynamically
+
+// Adding Notification Element to the Body
+notification.id = 'notification';
+notification.className = 'notification hidden';
+document.body.appendChild(notification);
+
+// Storing user data
+const userData = {};
+
+// Function to show a custom notification
+function showNotification(message) {
+    notification.textContent = message;
+    notification.classList.remove('hidden');
+    notification.classList.add('show');
+    setTimeout(() => {
+        notification.classList.remove('show');
+        notification.classList.add('hidden');
+    }, 3000); // Hide notification after 3 seconds
+}
+
+// Function to update the profile picture
+photoUpload.addEventListener('change', function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            profilePic.src = e.target.result;
+            uploadButton.textContent = 'Change Photo'; // Change button label after upload
+            showNotification('Profile photo updated successfully!');
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Function to save user data and display a summary in the console
+function saveUserData() {
+    userData.displayName = displayNameInput.value || 'Name not provided';
+    userData.aboutMe = aboutMeInput.value || 'About Me not filled';
+    userData.skills = skillsInput.value || 'Skills not added';
+    userData.email = emailInput.value || 'Email not provided';
+    userData.phone = phoneInput.value || 'Phone number not provided';
+
+    console.log('Profile Updated:', userData);
+    showNotification('Profile updated successfully!');
+}
+
+// Event Listener for Update Profile Button
+updateProfileButton.addEventListener('click', () => {
+    if (!displayNameInput.value.trim()) {
+        showNotification('Please provide your display name!');
+        return;
+    }
+    saveUserData();
+});
+</script>
