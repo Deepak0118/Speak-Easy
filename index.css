@@ -3,7 +3,7 @@ html, body {
     padding: 0;
     min-height: 100vh;
     font-family: 'Poppins', sans-serif;
-
+    height: 100%;
     background-image: url(/Homebg.jpg);
 
 
@@ -14,12 +14,15 @@ html, body {
     background-position: center;
     overflow-x: hidden;
   }
+ 
 
   .navbar {
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
+    padding-top: 0;
+    margin: 0;
     backdrop-filter: blur(12px);
     background: rgba(15, 15, 30, 0.6);
     padding: 14px 40px;
@@ -276,7 +279,7 @@ html, body {
   box-shadow: linear-gradient(90deg, #00fff0, #00b2ff, #d17bff);
 }
 .testimonial-section {
-  padding: 60px 40px;
+  padding: 80px 40px;
 
   background-image: url(/background5.png);
 
@@ -302,7 +305,7 @@ html, body {
 }
 
 .testimonial-slider {
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   max-width: 100%;
   
@@ -354,7 +357,7 @@ html, body {
   position: relative;
 }
 .testimonial-card:hover {
-  transform: translateY(-10px) scale(1.03);
+  transform: translateY(-5px) scale(1.02);
   box-shadow: 0 0 25px #56cfe1;
   
 }
@@ -492,8 +495,9 @@ footer {
   padding-left: 20px ;
   padding-right: 20px;
   color: white;
-  position: relative;
+  margin-top: auto;
   overflow-x: hidden;
+  position: relative;
 }
 
 .footer-container {
@@ -568,7 +572,7 @@ footer {
 .icon:hover {
   background:  #00fff0;
   /*background-color: #a066af; /* Purple shade */
-  color: #fff;
+  color: black;
 }
 
 
