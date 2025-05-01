@@ -12,12 +12,18 @@
 </head>
 <body>
   <div id="timerDisplay" class="timer-container">15</div>
+  <!-- Progress Bar -->
+  <div id="progressContainer" class="progress-container mt-2 mb-2">
+    <div id="progressBar" class="progress-bar-fill"></div>
+    <div id="progressLabel"></div>
+  </div>
   <div class="container text-center">
     <h2 class="mb-4" id="question">Question will appear here</h2>
     <div id="options" class="row justify-content-center"></div>
     <div id="result" class="mt-4"></div>
   </div>
-  
+
+  <!-- Pronounce Modal -->
   <div id="pronounceModal">
     <div class="modal-content">
       <div class="mb-3">Do you want to know the pronunciation of the correct word?</div>
@@ -25,7 +31,8 @@
       <button id="pronounceNo" class="btn mx-2">No</button>
     </div>
   </div>
-  
+
+  <!-- Repeat Modal -->
   <div id="repeatModal">
     <div class="modal-content">
       <div class="mb-3">Do you want to pronounce it again?</div>
@@ -33,6 +40,5 @@
       <button id="nextQuestion" class="btn mx-2">Next Question</button>
     </div>
   </div>
-  
 </body>
 </html>
