@@ -25,7 +25,7 @@
     <img src="https://img.icons8.com/ios-filled/100/ffffff/user-male-circle.png" alt="User Profile" style="width: 24px; height: 24px; margin-right:8px" id="profileBtn";>
     <div class="username" id="welcome-message"></div>
       <div class="dropdown-menu" id="dropdownMenu">
-        <a href="#">Profile</a>
+        <a href="profile.html">Profile</a>
         <a href="index.html#home">Exit</a>
       </div>
     </div>
@@ -89,6 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
   profileBtn.addEventListener('click', () => {
     dropdownMenu.classList.toggle('show');
   });
+
+  // Update the Profile link to include the username as a query parameter
+  const profileLink = document.querySelector(".dropdown-menu a[href='profile.html']");
+  const welcomeMessage = document.getElementById('welcome-message');
+
+  if (profileLink && welcomeMessage) {
+    const username = welcomeMessage.textContent.trim();
+    profileLink.href = `profile.html?username=${encodeURIComponent(username)}`;
+  }
 });
 </script>
 
