@@ -19,9 +19,9 @@ let questions = [
     { 
         question: 'Which one of these is "The book"?', 
         options: [
-            { img: 'pen-removebg-preview.png', text: 'penna', answer: false },
+            { img: 'pen.jpg', text: 'penna', answer: false },
             { img: 'https://tse2.mm.bing.net/th?id=OIP.Asg_j2qBjTgoj5q9ZXSNvgHaJb&pid=Api&P=0&h=180', text: 'libro', answer: true },
-            { img: 'pencil-removebg-preview.png', text: 'matita', answer: false }
+            { img: 'pencil.jpg', text: 'matita', answer: false }
         ]
     },
     { 
@@ -42,8 +42,8 @@ let questions = [
     },
     {   question: 'Which one of these is "pen"?',
         options:  [
-            { img: 'pen-removebg-preview.png',text:"penna" ,answer: true },
-            { img: 'pencil-removebg-preview.png',text: 'matita', answer: false },
+            { img: 'pen.jpg',text:"penna" ,answer: true },
+            { img: 'pencil.jpg',text: 'matita', answer: false },
             { img: 'https://tse2.mm.bing.net/th?id=OIP.Asg_j2qBjTgoj5q9ZXSNvgHaJb&pid=Api&P=0&h=180',text:'libro', answer: false }
         ]
     },
@@ -56,8 +56,8 @@ let questions = [
 },
     {   question: 'which of these is "pencil"?',
         options:  [
-            { img: 'pencil-removebg-preview.png',text: 'matita', answer: true },
-            { img: 'pen-removebg-preview.png',text: 'penna', answer: false },
+            { img: 'pencil.jpg',text: 'matita', answer: true },
+            { img: 'pen.jpg',text: 'penna', answer: false },
             { img: 'https://tse2.mm.bing.net/th?id=OIP.Asg_j2qBjTgoj5q9ZXSNvgHaJb&pid=Api&P=0&h=180',text: 'libro', answer: false }
         ]
     },
