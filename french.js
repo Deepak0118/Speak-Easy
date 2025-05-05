@@ -237,7 +237,7 @@ let questions = [
             <p class="mb-4 text-danger">Incorrect: <strong>${incorrect}</strong></p>
             <div class="d-flex flex-column gap-2">
               <button class="btn btn-success mb-2" onclick="shareScore()">📤 Share your score</button>
-              <button class="btn btn-primary" onclick="goHome()">🏠 Home</button>
+              <button class="btn btn-primary" onclick="goHome()">🏠 Exit Quiz</button>
             </div>
           </div>
         </div>
@@ -264,7 +264,7 @@ let questions = [
     }
 
     function goHome() {
-      window.location.href = '/'; // Adjust as necessary
+      window.location.href = 'Basic2.html'; // Adjust as necessary
     }
 
     // Start the quiz

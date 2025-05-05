@@ -256,7 +256,7 @@ let questions = [
   }
 
   function goHome() {
-    window.location.href = 'chooselang.html'; // Adjust as necessary
+    window.location.href = 'Basic2.html'; // Adjust as necessary
   }
 
   // Start the quiz
