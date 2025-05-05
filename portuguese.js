@@ -71,7 +71,7 @@ let questions = [
     {   question: 'which of these means "house"?',
         options:  [
             { img: 'https://emojis.wiki/emoji-pics/facebook/house-facebook.png',text:'casa', answer: true },
-            { img: 'https://symbl-world.akamaized.net/i/webp/f5/f6918df7b639080a618e248db22d6c.webp',text: 'escola', answer: false },
+            { img: 'https://th.bing.com/th/id/OIP.8shYZMYGMf4MvShLKWO7wAHaHT?w=199&h=198&c=7&r=0&o=7&cb=iwp1&dpr=1.4&pid=1.7&rm=3',text: 'escola', answer: false },
             { img: 'https://th.bing.com/th/id/OIP.-UaQjK9gihRQEQNqeCg0pgHaHa?w=173&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7',text: 'hospital' ,answer: false }
         ]
     },
