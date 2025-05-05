@@ -145,6 +145,7 @@ body, html {
   font-size: 48px;
   color: white;
   margin-bottom: 30px;
+  animation: pinkGlow 1.5s infinite alternate;
 }
 
 .cards {

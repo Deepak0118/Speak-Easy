@@ -25,25 +25,34 @@
         <!-- Right Section -->
         <div class="right-section">
             <h2>Basic Information</h2>
+            
+            
             <div class="form-group">
                 <label for="aboutMe">About Me</label>
-                <textarea id="aboutMe" placeholder="Write about yourself..."></textarea>
+                <textarea id="aboutMe" placeholder="Write about yourself..." ></textarea>
             </div>
+            <form id="login-form">
+            <div class="input-group">
             <div class="form-group">
                 <label for="skills">Skills</label>
-                <input type="text" id="skills" placeholder="Enter your skills (comma-separated)">
+                <input type="text" id="skills" placeholder="Enter your skills (comma-separated)" data-field="skills">
+                <div class="input-group__error"></div>
+
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Enter your email">
+                <input type="email" id="email" placeholder="Enter your email" data-field="email">
+                <div class="input-group__error"></div>
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" placeholder="Enter your phone number">
+                <input type="tel" id="phone" placeholder="Enter your phone number" data-field="phone number">
+                <div class="input-group__error"></div>
             </div>
             <button id="updateProfileButton" class="submit-btn">Update Profile</button>
         </div>
     </div>
+</form>
 </body>
 </html>
 <style>
@@ -73,7 +82,6 @@
     width: 61%;
     border: 3px solid #00f0ff;
     color: white;
-    font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
     box-shadow: 0 0 19px #00f0ff;
@@ -145,7 +153,7 @@
 
     /* Right Section */
     .right-section {
-        width: 41%; /* Adjusted width for better proportions */
+        width: 41%; 
         padding: 20px;
         margin-right: 90px;
         justify-content: center;
@@ -279,71 +287,144 @@
             height: 60px; /* Reduce textarea height */
         }
     }
+    .input--error {
+      border: 2px solid red !important;
+      color:red;
+    }
+    .input-group__error {
+    color: yellow;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+
 </style>
 <script>
-// Selecting all relevant elements from the form
-const profilePic = document.getElementById('profilePic');
-const photoUpload = document.getElementById('photoUpload');
-const uploadButton = document.getElementById('uploadButton');
-const displayNameInput = document.getElementById('displayName');
-const aboutMeInput = document.getElementById('aboutMe');
-const skillsInput = document.getElementById('skills');
-const emailInput = document.getElementById('email');
-const phoneInput = document.getElementById('phone');
-const updateProfileButton = document.getElementById('updateProfileButton');
-const notification = document.createElement('div'); // Create notification dynamically
-
-// Adding Notification Element to the Body
-notification.id = 'notification';
-notification.className = 'notification hidden';
-document.body.appendChild(notification);
-
-// Storing user data
-const userData = {};
-
-// Function to show a custom notification
-function showNotification(message) {
-    notification.textContent = message;
-    notification.classList.remove('hidden');
-    notification.classList.add('show');
-    setTimeout(() => {
-        notification.classList.remove('show');
-        notification.classList.add('hidden');
-    }, 3000); // Hide notification after 3 seconds
-}
-
-// Function to update the profile picture
-photoUpload.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
+    document.addEventListener('DOMContentLoaded', () => {
+      const profilePic = document.getElementById('profilePic');
+      const photoUpload = document.getElementById('photoUpload');
+      const uploadButton = document.getElementById('uploadButton');
+      const displayNameInput = document.getElementById('displayName');
+      const aboutMeInput = document.getElementById('aboutMe');
+      const skillsInput = document.getElementById('skills');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const updateProfileButton = document.getElementById('updateProfileButton');
+    
+      // Notification
+      const notification = document.createElement('div');
+      notification.className = 'notification hidden';
+      document.body.appendChild(notification);
+    
+      function showNotification(message) {
+        notification.textContent = message;
+        notification.classList.remove('hidden');
+        notification.classList.add('show');
+        setTimeout(() => {
+          notification.classList.remove('show');
+          notification.classList.add('hidden');
+        }, 3000);
+      }
+    
+      // Autofill displayName if passed via URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const username = urlParams.get('username');
+      if (username) {
+        displayNameInput.value = username;
+      }
+    
+      // Handle image preview
+      photoUpload.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
             profilePic.src = e.target.result;
-            uploadButton.textContent = 'Change Photo'; // Change button label after upload
+            uploadButton.textContent = 'Change Photo';
             showNotification('Profile photo updated successfully!');
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    
+      function validateInput(inputElement) {
+        const value = inputElement.value.trim();
+        const field = inputElement.dataset.field || inputElement.id;
+        const group = inputElement.closest('.form-group');
+        const errorMessageElement = group?.querySelector('.input-group__error');
+    
+        // Clear existing error state
+        inputElement.classList.remove('input--error');
+        if (errorMessageElement) errorMessageElement.textContent = '';
+    
+        // Required check
+        if (!value) {
+          inputElement.classList.add('input--error');
+          if (errorMessageElement) errorMessageElement.textContent = `Please fill out ${field}`;
+          return false;
+        }
+    
+        // Email format check
+        if (field === "email") {
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailPattern.test(value)) {
+            inputElement.classList.add('input--error');
+            if (errorMessageElement) errorMessageElement.textContent = `Please enter a valid email`;
+            return false;
+          }
+        }
+    
+        // Phone format check
+        if (field === "phone number") {
+          const phonePattern = /^\+?\d{0,10}$/;
+          if (!phonePattern.test(value)) {
+            inputElement.classList.add('input--error');
+            if (errorMessageElement) errorMessageElement.textContent = `Please enter a valid phone number`;
+            return false;
+          }
+        }
+    
+        return true;
+      }
+    
+      function saveUserData() {
+        const userData = {
+          displayName: displayNameInput.value.trim(),
+          aboutMe: aboutMeInput.value.trim(),
+          skills: skillsInput.value.trim(),
+          email: emailInput.value.trim(),
+          phone: phoneInput.value.trim()
         };
-        reader.readAsDataURL(file);
-    }
-});
+    
+        console.log('Profile Updated:', userData);
+        showNotification('Profile updated successfully!');
+      }
+    
+      updateProfileButton.addEventListener('click', (event) => {
+        event.preventDefault();
+    
+        const inputs = document.querySelectorAll('#login-form input, #login-form textarea');
+        let allValid = true;
+        inputs.forEach(input => {
+          if (!validateInput(input)) allValid = false;
+        });
+    
+        if (!allValid) return;
+    
+        saveUserData();
+    
+        // Redirect after notification
+        setTimeout(() => {
+ Ekagamjot
+          window.location.href = 'Basic2.html';
+        }, 1000);
 
-// Function to save user data and display a summary in the console
-function saveUserData() {
-    userData.displayName = displayNameInput.value || 'Name not provided';
-    userData.aboutMe = aboutMeInput.value || 'About Me not filled';
-    userData.skills = skillsInput.value || 'Skills not added';
-    userData.email = emailInput.value || 'Email not provided';
-    userData.phone = phoneInput.value || 'Phone number not provided';
+          window.location.href = 'chooselang.html';
+        }, 2000);
+ master
+      });
+    });
+    </script>
+    
 
-    console.log('Profile Updated:', userData);
-    showNotification('Profile updated successfully!');
-}
 
-// Event Listener for Update Profile Button
-updateProfileButton.addEventListener('click', () => {
-    if (!displayNameInput.value.trim()) {
-        showNotification('Please provide your display name!');
-        return;
-    }
-    saveUserData();
-});
-</script>
