@@ -1,25 +1,35 @@
 # Speak Easy 🗣
-### Speak Easy itself from its name specifies that it is a one stop learning platform to become fluent and efficient in any language.
 
-## 🗝Key Features
-- 🌍 Multilingual Learning
-  Learn and practice multiple languages including English, Spanish, French and more — all in one place.
+*Speak Easy* itself from its name specifies that it is a one stop learning platform to become fluent and efficient in any language.
 
-- 🧠 AI-Powered Speaking Practice  
-  Get real-time feedback on pronunciation, grammar, and vocabulary usage with AI-driven conversation partners.
+---
 
-- 🎯 Personalized Learning Paths  
-  Courses and exercises tailored to your fluency level, goals, and learning style for maximum effectiveness.
+## 🔑 Key Features
 
-- 📅 Flexible Scheduling
-  Practice anytime,anywhere with no time boundaries.
+- 🌍 *Multilingual Learning*  
+  Learn and test vocabulary in languages like French, German, Dutch, Portuguese, and more.
 
- ## 🪚Tech Stack 
-#### 1.Frontend-HTML,CSS,JS
-#### 2.Backend-Node.js
-#### 3.Database-Firebase
+- 🗣 *Pronunciation Feature*  
+  Listen to the correct pronunciation of words to improve speaking and listening skills.
 
-  ## How to Run the project
+- 🖼 *Image-Based MCQs*  
+  Answer vocabulary questions using visual multiple-choice options for fun and better word association.
+
+- 📄 *Dedicated Pages*  
+  Includes quiz and information pages to support interactive learning and language awareness.
+
+---
+
+## 🛠 Tech Stack
+
+- *Frontend:* HTML, CSS, JavaScript  
+- *Backend:* Node.js  
+- *Database:* Firebase  
+
+---
+
+## 🚀 How to Run the Project
+
   #### git clone- https://github.com/Deepak0118/Speak-Easy.git
   #### cd Speak-Easy
 
